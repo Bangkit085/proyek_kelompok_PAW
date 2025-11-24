@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: white;
+}
+
+/* ————— NAVIGASI KIRI ————— */
+.sidebar {
+    width: 220px;
+    background: #f4f4f4;
+    height: 100vh;
+    position: fixed;
+    padding-top: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.sidebar a:hover {
+    background: #ddd;
+}
+
+/* ————— KONTEN UTAMA ————— */
+.main-content {
+    margin-left: 240px;
+    padding: 20px;
+}
+
+/* ————— TOP MENU FITUR ————— */
+.top-menu {
+    background: white;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-menu .fitur a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #444;
+    font-weight: bold;
+}
+
+.top-menu .login-btn {
+    background: #4CAF50;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.top-menu .login-btn:hover {
+    background: #45a049;
+}
+
+/* ————— TABLE ————— */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th {
+    background: #f4f4f4;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+}

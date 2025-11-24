@@ -2,9 +2,7 @@
 include "../sidebar.php";
 include "../koneksi.php";
 
-// ambil kategori
 $kategori = mysqli_query($conn, "SELECT * FROM kategori");
-// ambil rak
 $rak = mysqli_query($conn, "SELECT * FROM rak");
 ?>
 
@@ -63,9 +61,7 @@ $rak = mysqli_query($conn, "SELECT * FROM rak");
 
                 <button type="submit" name="tambah" class="btn btn-dark">Simpan</button>
                 <a href="list_buku.php" class="btn btn-secondary">Kembali</a>
-
             </form>
-
         </div>
     </div>
 </div>

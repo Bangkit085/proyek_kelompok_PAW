@@ -1,7 +1,6 @@
 <?php
 include "../koneksi.php";
 
-// ============ TAMBAH BUKU ============
 if (isset($_POST['tambah'])) {
 
     $judul = $_POST['judul'];
@@ -26,8 +25,6 @@ if (isset($_POST['tambah'])) {
     header("Location: list_buku.php");
     exit;
 }
-
-// ============ EDIT BUKU ============
 if (isset($_POST['edit'])) {
 
     $id = $_POST['id_buku'];
@@ -48,7 +45,6 @@ if (isset($_POST['edit'])) {
     exit;
 }
 
-// ============ HAPUS BUKU ============
 if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
 

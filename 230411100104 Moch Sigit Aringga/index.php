@@ -3,20 +3,16 @@
 include "sidebar.php"; 
 include "koneksi.php"; // file koneksi database
 
-// Hitung total buku
 $total_buku = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM buku"))['total'];
 
-// Hitung peminjaman aktif
 $peminjaman_aktif = mysqli_fetch_assoc(mysqli_query($conn, 
     "SELECT COUNT(*) AS total FROM peminjaman WHERE status = 'dipinjam'"
 ))['total'];
 
-// Hitung peminjam terlambat
 $telat = mysqli_fetch_assoc(mysqli_query($conn, 
     "SELECT COUNT(*) AS total FROM peminjaman WHERE status = 'terlambat'"
 ))['total'];
 
-// Hitung total ebook
 $total_ebook = mysqli_fetch_assoc(mysqli_query($conn, 
     "SELECT COUNT(*) AS total FROM ebook"
 ))['total'];

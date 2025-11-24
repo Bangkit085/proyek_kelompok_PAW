@@ -70,7 +70,6 @@ $rak      = mysqli_query($conn, "SELECT * FROM rak");
                 <button type="submit" name="edit" class="btn btn-warning">Update</button>
                 <a href="list_buku.php" class="btn btn-secondary">Kembali</a>
             </form>
-
         </div>
     </div>
 </div>

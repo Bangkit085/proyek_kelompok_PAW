@@ -2,10 +2,7 @@
 include "../sidebar.php";
 include "../koneksi.php";
 
-// Ambil daftar kategori untuk dropdown filter
 $kategori = mysqli_query($conn, "SELECT * FROM kategori");
-
-// Siapkan kondisi WHERE (optional)
 $where = "";
 
 if (isset($_GET['filter_kategori']) && $_GET['filter_kategori'] != "") {
@@ -13,7 +10,6 @@ if (isset($_GET['filter_kategori']) && $_GET['filter_kategori'] != "") {
     $where = " WHERE buku.id_kategori = '$idkat' ";
 }
 
-// Query utama ambil data buku + kategori + rak
 $sql = "SELECT buku.*, kategori.nama_kategori, rak.kode_rak 
         FROM buku
         JOIN kategori ON buku.id_kategori = kategori.id_kategori
@@ -21,10 +17,8 @@ $sql = "SELECT buku.*, kategori.nama_kategori, rak.kode_rak
         $where
         ORDER BY buku.id_buku DESC";
 
-// JALANKAN QUERY DENGAN VARIABEL YANG BENAR
 $result = mysqli_query($conn, $sql);
 ?>
-
 
 <div class="content">
     <h3 class="mb-3">📘 Daftar Buku</h3>
@@ -53,8 +47,6 @@ $result = mysqli_query($conn, $sql);
                     </div>
                 </div>
             </form>
-
-
             <table class="table table-striped table-bordered">
                 <thead class="table-dark">
                     <tr>
@@ -67,7 +59,6 @@ $result = mysqli_query($conn, $sql);
                         <th>Aksi</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <?php $no = 1; ?>
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
@@ -88,9 +79,7 @@ $result = mysqli_query($conn, $sql);
                         </tr>
                     <?php } ?>
                 </tbody>
-
             </table>
-
         </div>
     </div>
 </div>

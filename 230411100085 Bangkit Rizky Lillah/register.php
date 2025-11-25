@@ -43,14 +43,14 @@ if (isset($_POST['simpan'])) {
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Nim</label>
             <div class="col-sm-9">
-                <input type="number" name="nim" class="form-control" placeholder="nim" required>
+                <input type="number" name="nim" class="form-control" placeholder="ex:'260411100001'" required>
             </div>
         </div>
 
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Password</label>
             <div class="col-sm-9">
-                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                <input type="password" name="password" class="form-control" placeholder="password" required>
             </div>
         </div>
 
@@ -64,18 +64,40 @@ if (isset($_POST['simpan'])) {
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Email</label>
             <div class="col-sm-9">
-                <input type="email" name="email" class="form-control" rows="3" placeholder="email">
+                <input type="email" name="email" class="form-control" rows="3" placeholder="xxxxx@email.com">
             </div>
         </div>
 
         <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Peran</label>
             <div class="col-sm-9">
-                <select name="peran" class="form-select">
-                    <option value="">--- Pilih Jenis Peran ---</option>
+                <select name="peran" id="peranSelect" class="form-select" onchange="cekPeran()">
+                    <option value="" disabled selected>--- Pilih Jenis Peran ---</option>
                     <option value="Dosen">Dosen</option>
                     <option value="Mahasiswa">Mahasiswa</option>
+                    <option value="Lainnya">Lainnya...</option>
                 </select>
+
+                <!-- Input muncul otomatis jika pilih 'Lainnya' -->
+                <div id="peranLainnyaDiv" style="margin-top: 10px; display: none;">
+                    <input type="text" id="peranLainnyaInput" name="peran_lainnya" class="form-control" placeholder="Masukkan peran lainnya...">
+                </div>
+
+                <script>
+                function cekPeran() {
+                    let pilih = document.getElementById("peranSelect").value;
+                    let divInput = document.getElementById("peranLainnyaDiv");
+                    let input = document.getElementById("peranLainnyaInput");
+                
+                    if (pilih === "Lainnya") {
+                        divInput.style.display = "block";
+                        setTimeout(() => input.focus(), 100); // fokus otomatis
+                    } else {
+                        divInput.style.display = "none";
+                        input.value = ""; // reset jika berubah pilihan
+                    }
+                }
+                </script>
             </div>
         </div>
 

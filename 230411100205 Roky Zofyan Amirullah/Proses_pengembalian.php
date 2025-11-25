@@ -28,7 +28,7 @@ if ($pinjam) {
         }
 
         $stmt_denda = $pdo->prepare(
-            "INSERT INTO denda (id_peminjaman, id_pengguna, jumlah_denda, status_peminjaman)
+            "INSERT INTO denda (id_peminjaman, id_pengguna, jumlah_denda, status_pembayaran)
              VALUES (?, ?, ?, 'belum')"
         );
         $stmt_denda->execute([

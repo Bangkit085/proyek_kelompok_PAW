@@ -1,5 +1,5 @@
 <?php
-include "koneksi.php";
+include "../koneksi.php";
 
 if (isset($_POST['simpan'])) {
 
@@ -12,8 +12,8 @@ if (isset($_POST['simpan'])) {
     $query = "INSERT INTO pengguna (nim, password, nama, email, peran) 
               VALUES ('$nim', '$password', '$nama', '$email', '$peran')";
     
-    mysqli_query($conn, $query);
-    header("Location: index.php?success=1");
+    mysqli_query($koneksi, $query);
+    header("Location: login.php?success=1");
     exit;
 }
 ?>
@@ -73,9 +73,7 @@ if (isset($_POST['simpan'])) {
             <div class="col-sm-9">
                 <select name="peran" id="peranSelect" class="form-select" onchange="cekPeran()">
                     <option value="" disabled selected>--- Pilih Jenis Peran ---</option>
-                    <option value="Dosen">Dosen</option>
                     <option value="Mahasiswa">Mahasiswa</option>
-                    <option value="Lainnya">Lainnya...</option>
                 </select>
 
                 <!-- Input muncul otomatis jika pilih 'Lainnya' -->
@@ -104,7 +102,7 @@ if (isset($_POST['simpan'])) {
         <div class="row mt-4">
             <div class="col-sm-9 offset-sm-3">
                 <button type="submit" name="simpan" class="btn btn-success">Simpan</button>
-                <a href="index.php" class="btn btn-danger">Batal</a>
+                <a href="login.php" class="btn btn-danger">Batal</a>
             </div>
         </div>
 

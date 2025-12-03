@@ -1,73 +1,71 @@
-<?php
+<?php 
 session_start();
-require "koneksi.php";
+require 'function.php';  
 
-if(isset($_SESSION['nim'])) {
-    header("Location: index.php");
-    exit;
-}
+$error = null;  
 
-if(isset($_POST['login'])) {
-    $nim = $_POST['nim'];
-    $password = md5($_POST['password']);
-
-    $q = mysqli_query($conn, "SELECT * FROM pengguna WHERE nim='$nim' AND password='$password'");
-
-    if(mysqli_num_rows($q) > 0) {
-        $data = mysqli_fetch_assoc($q);
-        $_SESSION['nim'] = $data['nim'];
-        $_SESSION['peran'] = $data['peran'];
-        header("Location: index.php");
-        exit;
-    } else {
-        $error = "Nim atau Password salah!";
-    }
-}
-?>
+if (!isset($_SESSION['login'])) {     
+    $error = checkLogin($_POST);  
+} 
+?>  
 
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Login LibrarySys</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 
-<body class="bg-light">
+<body class="bg-light d-flex justify-content-center align-items-center" style="height: 100vh;">
 
+<div class="card p-4 shadow-sm text-center" style="width: 380px;">
 
-<div class="container mt-5" style="max-width: 400px;">
-    <div class="card p-4 shadow-sm"><br>
-        <img src="logo.png" alt="Logo PD" style="width:200px;" class="mx-auto d-block"> 
-        <h1 class="text-center">Perpustakaan <br>Digital</h1><br>
-        
-        <form method="POST">
-            <div class="mb-3" >
-                <label>Nim</label>
-                <input type="text" name="nim" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" required>
-            </div>
-            
-            <?php if (isset($error)) : ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <?= $error; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            <?php endif; ?>
-            
-            <div class="mb-3">
-                <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
-            </div>
-            <div class="text-center text-secondary" >
-                Belum punya akun? <a href="register.php" id="">Daftar di sini</a>
-            </div>
-        </form>
-
+    <!-- LOGO + JUDUL DI TENGAH -->
+    <i class="bi bi-book-half fs-1 text-primary"></i>
+    <div class="mt-2 mb-4">
+        <span class="fs-3 fw-bold" style="color: #5a7c93;">Login LibrarySys</span>
     </div>
+
+    <form method="POST">
+
+        <!-- NIM -->
+        <div class="mb-3 text-start">
+            <label class="form-label">NIM</label>
+            <input type="text" name="nim" class="form-control" required>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="mb-3 text-start">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+
+        <!-- ERROR -->
+        <?php if (!empty($error)) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?= $error; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+
+        <!-- BUTTON LOGIN -->
+        <button type="submit" name="login" class="btn btn-primary w-100 mb-3">
+            Login
+        </button>
+
+        <!-- LINK REGISTER -->
+        <div class="text-center text-secondary">
+            Belum punya akun? 
+            <a href="register.php">Daftar di sini</a>
+        </div>
+
+    </form>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
